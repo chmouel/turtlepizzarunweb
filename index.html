@@ -34,6 +34,31 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script type="text/javascript">
+     document.addEventListener('DOMContentLoaded', function () {
+         q = "pizza running"; // search query
+
+         request = new XMLHttpRequest;
+         request.open('GET', 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag='+q, true);
+
+         request.onload = function() {
+             if (request.status >= 200 && request.status < 400){
+                 data = JSON.parse(request.responseText).data.image_url;
+                 console.log(data);
+                 document.getElementById("giphyme").innerHTML = '<center><img src = "'+data+'"  title="GIF via Giphy"></center>';
+             } else {
+                 console.log('reached giphy, but API returned an error');
+             }
+         };
+
+         request.onerror = function() {
+             console.log('connection error');
+         };
+
+         request.send();
+     });
+    </script>
+
 </head>
 
 <body id="page-top">
@@ -91,6 +116,19 @@
             </div>
         </div>
     </header>
+
+
+    <section id="features" class="features text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2>Tu t'ennuie?</h2>
+                    <h5>Regarde un GIF de pizza alors! (recharge la page pour des nouveaux)</h5>
+                    <span class="img-responsive" id="giphyme"></span>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <section id="contact" class="contact bg-primary">

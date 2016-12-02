@@ -44,7 +44,7 @@
                         var c=0;
                         $scope.image_url = 'img/pizza-animated.gif';
                         $scope.refreshGif = (function(){
-                            q = "pizza"; // search query
+                            q = "turtle+ninja+pizza"; // search query
                             request = new XMLHttpRequest;
                             result = $http.get('https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag='+q);
                             result.success(function(data, status, headers, config) {
@@ -107,9 +107,9 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h2>Tu es trop excité par ce run?</h2>
-                    <h3>Regarde des GIF de pizza alors en attendant!</h3>
+                    <h3>Regarde des GIF de tortues et de pizza alors en attendant!</h3>
                     <div ng-app="refresh_div" ng-controller="refresh_control">
-                      <center><img class="center-block img-circle img-responsive" src="{{image_url}}"  title="GIF via Giphy"></center>
+                      <center><img class="center-block img-rounded img-responsive" src="{{image_url}}"  title="GIF via Giphy"></center>
                     </div>
                     <h5> (pleins de gifs qui vont s'enchaîner si tu attends un peu)</h5>
                 </div>
@@ -120,7 +120,8 @@
 
     <section id="contact" class="contact bg-primary">
         <div class="container">
-            <h2>Que du <i class="fa fa-heart"></i> pour vous!</h2>
+            <h2>Que du <i class="fa fa-heart"></i> pour toi!</h2>
+            <h4>Alors si toi aussi, viens nous suivre sur notre FB ou IG</h4>
             <ul class="list-inline list-social">
                 <li class="social-facebook">
                     <a href="https://www.facebook.com/turtlepizzarun"><i class="fa fa-facebook"></i></a>

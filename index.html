@@ -27,12 +27,8 @@
     <!-- Theme CSS -->
     <link href="css/new-age.min.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- Angular  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
     <script type="text/javascript">
      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -43,28 +39,20 @@
      ga('create', 'UA-88332433-1', 'auto');
      ga('send', 'pageview');
 
-     document.addEventListener('DOMContentLoaded', function () {
-         q = "pizza"; // search query
-
-         request = new XMLHttpRequest;
-         request.open('GET', 'https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag='+q, true);
-
-         request.onload = function() {
-             if (request.status >= 200 && request.status < 400){
-                 data = JSON.parse(request.responseText).data.image_url;
-                 https_url = data.replace("http", "https");
-                 document.getElementById("giphyme").innerHTML = '<center><img src = "'+https_url+'"  title="GIF via Giphy"></center>';
-             } else {
-                 console.log('reached giphy, but API returned an error');
-             }
-         };
-
-         request.onerror = function() {
-             console.log('connection error');
-         };
-
-         request.send();
-     });
+     var app=angular.module('refresh_div',[])
+                    .controller('refresh_control',function($scope,$interval, $http){
+                        var c=0;
+                        $scope.image_url = 'img/pizza-animated.gif';
+                        $scope.refreshGif = (function(){
+                            q = "pizza"; // search query
+                            request = new XMLHttpRequest;
+                            result = $http.get('https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag='+q);
+                            result.success(function(data, status, headers, config) {
+                                $scope.image_url = data.data.image_url.replace("http:", "https:");
+                            })
+                        })
+                        $interval(function(){ $scope.refreshGif(); }, 10000);
+                    });
     </script>
 
 </head>
@@ -119,9 +107,11 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h2>Tu es trop excité par ce run?</h2>
-                    <h3>Regarde un GIF de pizza alors en attendant!</h3>
-                    <span class="img-responsive" id="giphyme"></span>
-                    <h5> (recharge la page pour d'autres, tu va voir c'est magique!)</h5>
+                    <h3>Regarde des GIF de pizza alors en attendant!</h3>
+                    <div ng-app="refresh_div" ng-controller="refresh_control">
+                      <center><img src="{{image_url}}"  title="GIF via Giphy"></center>
+                    </div>
+                    <h5> (pleins de gifs qui vont s'enchaîner si tu attends un peu)</h5>
                 </div>
             </div>
         </div>

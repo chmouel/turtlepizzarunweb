@@ -1,7 +1,5 @@
 var app=angular.module('Turtle',[]).controller('MyController',function($scope,$interval, $http){
     var c=0;
-    $scope.banner_src = 'img/finish/mangepizza-4.jpg'
-
     $scope.refreshGif = (function(){
         q = "turtle+ninja+pizza"; // search query
         request = new XMLHttpRequest;

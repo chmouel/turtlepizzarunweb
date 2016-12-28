@@ -83,7 +83,8 @@
               <div class="device-mockup iphone6_plus portrait white">
                 <div class="device">
                   <div class="screen">
-                    <img src="img/finish/mangepizza-4.jpg" class="img-responsive" alt="">
+                    <!-- 1365/2048 -->
+                    <img ng-src="{{imgInMobile}}" class="img-responsive" alt="">
                   </div>
                   <div class="button">
                     <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -124,7 +125,7 @@
 
             <h4>
               <i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;
-              On avait pleins de gens qui se sont <code>déguisé</code>.
+              On avait plein de gens qui se sont <code>déguisés</code>.
             </h4>
             <br/>
 
@@ -149,7 +150,7 @@
                   <h4>Nous avons plein d’idées de course, alors suis notre page <a href="https://www.facebook.com/turtlepizzarun"><i class="fa fa-facebook">Facebook</i></a> pour être sûr de ne pas les rater.</h4>
                   <h3><strong>En attendant, regarde des GIF de tortue et de pizza!</strong></h3>
                   <div ng-init="image_url = 'img/pizza-animated.gif'">
-                    <center><img class="center-block img-rounded img-responsive" src="{{image_url}}"  title="GIF via Giphy"></center>
+                    <center><img class="center-block img-rounded img-responsive" ng-src="{{image_url}}"  title="GIF via Giphy"></center>
                   </div>
                     <h5> (pleins de gifs qui vont s'enchaîner si tu attends un peu)</h5>
                 </div>
